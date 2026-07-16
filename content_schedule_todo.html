@@ -1,0 +1,346 @@
+<!-- Content Schedule To-Do -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ink:#1c1b1f;
+    --paper:#faf7f2;
+    --line:#e7e0d4;
+    --gold:#e0a72e;
+    --gold-soft:#f6e6bd;
+    --dim:#8b8578;
+    --insta:#c2438a;
+    --yt:#d63e3e;
+    --community:#3e6fd6;
+  }
+
+  #csw *{box-sizing:border-box;}
+  #csw{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:16px;
+    padding:28px 24px 32px;
+    max-width:680px;
+    margin:0 auto;
+  }
+  #csw h1{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:26px;
+    margin:0 0 2px;
+    letter-spacing:-0.01em;
+  }
+  #csw .sub{
+    color:var(--dim);
+    font-size:13.5px;
+    margin-bottom:22px;
+  }
+  #csw .progress-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:24px;
+  }
+  #csw .bar{
+    flex:1;
+    height:6px;
+    background:var(--line);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  #csw .bar-fill{
+    height:100%;
+    background:var(--gold);
+    border-radius:99px;
+    transition:width .35s ease;
+  }
+  #csw .progress-label{
+    font-size:12.5px;
+    color:var(--dim);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+
+  #csw .timeline{
+    position:relative;
+    padding-left:20px;
+  }
+  #csw .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:6px; bottom:6px;
+    width:2px;
+    background:var(--line);
+  }
+
+  #csw .item{
+    position:relative;
+    margin-bottom:14px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 14px 12px 18px;
+    transition:opacity .25s ease, transform .2s ease;
+  }
+  #csw .item.done{opacity:.5;}
+  #csw .dot{
+    position:absolute;
+    left:-20px; top:20px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--gold);
+  }
+  #csw .item.done .dot{background:var(--gold);}
+
+  #csw .row1{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  #csw .check{
+    margin-top:2px;
+    width:19px; height:19px;
+    border-radius:6px;
+    border:1.6px solid var(--dim);
+    cursor:pointer;
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:#fff;
+  }
+  #csw .check.checked{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+    font-size:12px;
+  }
+  #csw .content-main{flex:1; min-width:0;}
+  #csw .platform-row{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:3px;
+    flex-wrap:wrap;
+  }
+  #csw .plat-badge{
+    font-size:11px;
+    font-weight:600;
+    padding:2px 8px;
+    border-radius:99px;
+    color:#fff;
+  }
+  #csw .time{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  #csw .item.done .time,#csw .item.done .ctitle{text-decoration:line-through;}
+  #csw .ctitle{
+    font-size:15px;
+    font-weight:600;
+    margin:2px 0 4px;
+  }
+  #csw .stars{font-size:13px; letter-spacing:1px;}
+  #csw .star-on{color:var(--gold);}
+  #csw .star-off{color:var(--line);}
+  #csw .del{
+    background:none;border:none;color:var(--dim);cursor:pointer;
+    font-size:13px; padding:2px 6px; flex-shrink:0;
+  }
+  #csw .del:hover{color:#c0392b;}
+
+  #csw .add-form{
+    display:flex;
+    gap:8px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  #csw .add-form input, #csw .add-form select{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 10px;
+    background:#fff;
+    color:var(--ink);
+  }
+  #csw .add-form input[name=content]{flex:1; min-width:120px;}
+  #csw .add-form input[name=time]{width:110px;}
+  #csw .add-btn{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  #csw .add-btn:hover{background:#000;}
+  #csw .empty{
+    text-align:center;
+    color:var(--dim);
+    font-size:13.5px;
+    padding:30px 0;
+  }
+  #csw .reset{
+    display:block;
+    margin:18px auto 0;
+    background:none;
+    border:none;
+    color:var(--dim);
+    font-size:12px;
+    text-decoration:underline;
+    cursor:pointer;
+  }
+</style>
+
+<div id="csw">
+  <h1>Ras Junction — Content Schedule</h1>
+  <div class="sub">Post karo, check karo, tick maar do ✓ — jab tak khud uncheck ya reset na karo, wahi rahega</div>
+
+  <div class="progress-row">
+    <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+    <div class="progress-label" id="progLabel">0/0 done</div>
+  </div>
+
+  <div class="timeline" id="timeline"></div>
+  <div class="empty" id="emptyMsg" style="display:none;">Koi post nahi hai. Neeche se add karo 👇</div>
+
+  <div class="add-form">
+    <select name="platform" id="fPlatform">
+      <option value="Instagram">Instagram</option>
+      <option value="YouTube">YouTube</option>
+      <option value="YouTube Community">YT Community</option>
+    </select>
+    <input name="time" id="fTime" placeholder="e.g. 6:00 AM" />
+    <input name="content" id="fContent" placeholder="Content (e.g. Reel, Carousel...)" />
+    <button class="add-btn" id="addBtn">+ Add</button>
+  </div>
+
+  <button class="reset" id="resetBtn">Reset to default schedule</button>
+</div>
+
+<script>
+(function(){
+  const KEY = "content_schedule_items_v1";
+  const DEFAULTS = [
+    {id:"1", platform:"Instagram", content:"Carousel", time:"6:00 AM", priority:5, done:false},
+    {id:"2", platform:"YouTube Community", content:"Carousel / Notes", time:"12:30 PM", priority:4, done:false},
+    {id:"3", platform:"YouTube Community", content:"Quiz / Poll", time:"3:30 PM", priority:4, done:false},
+    {id:"4", platform:"YouTube", content:"Long Video", time:"6:45 PM", priority:5, done:false},
+    {id:"5", platform:"Instagram", content:"Reel", time:"9:00 PM", priority:5, done:false},
+  ];
+
+  const badgeColor = p => p === "Instagram" ? "linear-gradient(135deg,#c2438a,#e08b3f)"
+                        : p === "YouTube" ? "var(--yt)"
+                        : "var(--community)";
+
+  let items = [];
+
+  async function load(){
+    let stored = null;
+    try{
+      const raw = localStorage.getItem(KEY);
+      stored = raw ? JSON.parse(raw) : null;
+    }catch(e){ stored = null; }
+
+    if(!stored){
+      items = JSON.parse(JSON.stringify(DEFAULTS));
+      save();
+    } else {
+      // always restore exactly as left, ticks included — never auto-uncheck
+      items = stored.items || [];
+    }
+    render();
+  }
+
+  function save(){
+    try{
+      localStorage.setItem(KEY, JSON.stringify({ items }));
+    }catch(e){ console.error("save failed", e); }
+  }
+
+  function stars(n){
+    let s = "";
+    for(let i=1;i<=5;i++) s += `<span class="${i<=n?'star-on':'star-off'}">★</span>`;
+    return s;
+  }
+
+  function render(){
+    const tl = document.getElementById('timeline');
+    const empty = document.getElementById('emptyMsg');
+    tl.innerHTML = "";
+    if(items.length === 0){ empty.style.display = 'block'; }
+    else { empty.style.display = 'none'; }
+
+    items.forEach(it=>{
+      const div = document.createElement('div');
+      div.className = 'item' + (it.done ? ' done' : '');
+      div.innerHTML = `
+        <div class="dot"></div>
+        <div class="row1">
+          <div class="check ${it.done?'checked':''}" data-id="${it.id}">${it.done?'✓':''}</div>
+          <div class="content-main">
+            <div class="platform-row">
+              <span class="plat-badge" style="background:${badgeColor(it.platform)}">${it.platform}</span>
+              <span class="time">${it.time}</span>
+            </div>
+            <div class="ctitle">${it.content}</div>
+            <div class="stars">${stars(it.priority)}</div>
+          </div>
+          <button class="del" data-id="${it.id}">✕</button>
+        </div>
+      `;
+      tl.appendChild(div);
+    });
+
+    document.querySelectorAll('.check').forEach(el=>{
+      el.onclick = () => toggleDone(el.getAttribute('data-id'));
+    });
+    document.querySelectorAll('.del').forEach(el=>{
+      el.onclick = () => deleteItem(el.getAttribute('data-id'));
+    });
+
+    const done = items.filter(i=>i.done).length;
+    const total = items.length;
+    document.getElementById('progLabel').textContent = `${done}/${total} done`;
+    document.getElementById('barFill').style.width = total ? `${(done/total)*100}%` : '0%';
+  }
+
+  function toggleDone(id){
+    const it = items.find(i=>i.id===id);
+    if(it){ it.done = !it.done; render(); save(); }
+  }
+
+  function deleteItem(id){
+    items = items.filter(i=>i.id!==id);
+    render(); save();
+  }
+
+  document.getElementById('addBtn').onclick = () => {
+    const platform = document.getElementById('fPlatform').value;
+    const time = document.getElementById('fTime').value.trim();
+    const content = document.getElementById('fContent').value.trim();
+    if(!content || !time) return;
+    items.push({
+      id: Date.now().toString(),
+      platform, content, time,
+      priority: 4,
+      done: false
+    });
+    document.getElementById('fTime').value = "";
+    document.getElementById('fContent').value = "";
+    render(); save();
+  };
+
+  document.getElementById('resetBtn').onclick = () => {
+    items = JSON.parse(JSON.stringify(DEFAULTS));
+    render(); save();
+  };
+
+  load();
+})();
+</script>
